@@ -7,11 +7,14 @@
             <div class="card-body">
                 <h1 class="card-title">Edit <strong>Surat Masuk</strong></h1>
                 <br>
-
                 <form action="{{ url('/smasuk/' . $smasuk->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('patch')
                     <form class="forms-sample">
+                        <div class="form-group">
+                            <label for="file">Lampiran</label>
+                            <input type="file" class="file-upload-browse btn btn-gradient-primary" name="file" id="file">
+                        </div>
                         <div class="form-group">
                             <label for="nomasuk">Nomor Surat</label>
                             <input type="text" name="nomasuk" class="form-control @error('nomasuk') is-invalid @enderror"

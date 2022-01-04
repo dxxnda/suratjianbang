@@ -94,7 +94,7 @@ class SmasukController extends Controller
 
         // untuk memasukkan data ketable
         Smasuk::create([
-            'photo'=> $nama_file,
+            'file'=> $nama_file,
             'nomasuk' => $request->nomasuk,
             'perihal' => $request->perihal,
             'asal' => $request->asal,
@@ -161,8 +161,12 @@ class SmasukController extends Controller
                 'ket.required' => 'WAJIB DIISI!',
             ]
         );
+        $img = $request->file('file');
+        $nama_file = time() . "_" . $img->getClientOriginalName();
+        $img->move('dist/img', $nama_file); //proses upload foto kelaravel
 
         Smasuk::where('id', $smasuk->id)->update([
+            'file'=> $nama_file,
             'nomasuk' => $request->nomasuk,
             'perihal' => $request->perihal,
             'asal' => $request->asal,
