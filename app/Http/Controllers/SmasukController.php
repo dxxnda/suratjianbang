@@ -163,7 +163,7 @@ class SmasukController extends Controller
         );
         $img = $request->file('file');
         $nama_file = time() . "_" . $img->getClientOriginalName();
-        $img->move('dist/img', $nama_file); //proses upload foto kelaravel
+        $img->move('dist/img', $nama_file);
 
         Smasuk::where('id', $smasuk->id)->update([
             'file'=> $nama_file,

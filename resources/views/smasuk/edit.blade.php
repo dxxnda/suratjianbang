@@ -2,11 +2,19 @@
 @section('title', 'Edit Surat Masuk')
 
 @section('content')
+<div class="page-header">
+    <h3 class="page-title"> Edit Surat Masuk </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/smasuk') }}">Surat Masuk</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Edit Surat Masuk</li>
+        </ol>
+    </nav>
+</div>
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h1 class="card-title">Edit <strong>Surat Masuk</strong></h1>
-                <br>
                 <form action="{{ url('/smasuk/' . $smasuk->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('patch')
@@ -67,19 +75,6 @@
                                 </div>
                             @enderror
                         </div>
-
-                        {{-- <div class="form-group">
-                            <label>File upload</label>
-                            <input type="file" name="img[]" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled
-                                    placeholder="Upload Image">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-gradient-primary"
-                                        type="button">Upload</button>
-                                </span>
-                            </div>
-                        </div> --}}
                         <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
                         <button class="btn btn-light">Cancel</button>
                     </form>

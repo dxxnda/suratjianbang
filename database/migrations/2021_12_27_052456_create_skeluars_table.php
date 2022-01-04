@@ -15,6 +15,7 @@ class CreateSkeluarsTable extends Migration
     {
         Schema::create('skeluars', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('file')->default('logoplg.jpeg');
             $table->string('nokeluar');
             $table->text('perihal');
             $table->string('dituju');   

@@ -2,6 +2,15 @@
 @section('title', 'Smasuk')
 
 @section('content')
+    <div class="page-header">
+        <h3 class="page-title"> Surat Masuk </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Surat Masuk</li>
+            </ol>
+        </nav>
+    </div>
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <form action="{{ url('/smasuk/cari') }}" method="POST">
@@ -15,10 +24,8 @@
                 </div>
             </form>
             <div class="card-body">
-                <h4 class="card-title">Surat Masuk</h4>
-                <br>
                 <a href="{{ url('/smasuk/create') }}" type="button" class="btn btn-gradient-primary btn-rounded btn-fw"
-                role="button">Add</a>
+                    role="button">Add</a>
                 @if (session('status'))
                     <div class="alert alert-primary mt-3">
                         {{ session('status') }}
@@ -41,7 +48,7 @@
                         @foreach ($smasuk as $key => $item)
                             <tr>
                                 <td>{{ $smasuk->firstItem() + $key }}</td>
-                                <td> <img src="{{asset('dist/img/'.$item->file)}}" width="40" height="auto" alt=""> </td>
+                                <td> <img src="{{ asset('dist/img/' . $item->file) }}" width="40" height="auto" alt=""> </td>
                                 <td>{{ $item->nomasuk }} </td>
                                 <td>{{ $item->perihal }} </td>
                                 <td>{{ $item->asal }} </td>
@@ -81,7 +88,6 @@
                     of
                     {{ $smasuk->total() }}
                     entries
-
                 </div>
                 <div class="d-flex justify-content-end mt-3">
                     {{ $smasuk->links() }}

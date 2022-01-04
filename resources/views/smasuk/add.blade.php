@@ -2,11 +2,19 @@
 @section('title', 'Add Surat Masuk')
 
 @section('content')
+<div class="page-header">
+    <h3 class="page-title"> Tambah Surat Masuk </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/smasuk') }}">Surat Masuk</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Tambah Surat Masuk</li>
+        </ol>
+    </nav>
+</div>
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h1 class="card-title">Tambah Surat Masuk</h1>
-            <br>
             <form action="{{ url('smasuk') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <form class="forms-sample">

@@ -2,16 +2,27 @@
 @section('title', 'Edit Surat Keluar')
 
 @section('content')
+<div class="page-header">
+    <h3 class="page-title"> Edit Surat Keluar </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/skeluar') }}">Surat Keluar</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Edit Surat Keluar</li>
+        </ol>
+    </nav>
+</div>
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h1 class="card-title">Edit <strong>Surat Keluar</strong></h1>
-                <br>
-
                 <form action="{{ url('/skeluar/' . $skeluar->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('patch')
                     <form class="forms-sample">
+                        <div class="form-group">
+                            <label for="file">Lampiran</label>
+                            <input type="file" class="file-upload-browse btn btn-gradient-primary" name="file" id="file">
+                        </div>
                         <div class="form-group">
                             <label for="nokeluar">Nomor Surat</label>
                             <input type="text" name="nokeluar" class="form-control @error('nokeluar') is-invalid @enderror"
@@ -64,19 +75,6 @@
                                 </div>
                             @enderror
                         </div>
-
-                        {{-- <div class="form-group">
-                            <label>File upload</label>
-                            <input type="file" name="img[]" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled
-                                    placeholder="Upload Image">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-gradient-primary"
-                                        type="button">Upload</button>
-                                </span>
-                            </div>
-                        </div> --}}
                         <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
                         <button class="btn btn-light">Cancel</button>
                     </form>

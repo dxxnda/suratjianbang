@@ -14,15 +14,27 @@ class SkeluarController extends Controller
      */
     public function index()
     {
-        $skeluar = Skeluar::all();
+        $skeluar = Skeluar::paginate(10);
         return view('skeluar.index', compact('skeluar'));
     }
     public function cetak()
     {
         // dd(request('cari'));
         $skeluar = Skeluar::all();
-        return view('cetak', compact('skeluar'));
+        return view('skeluar.cetak', compact('skeluar'));
     }
+
+    public function cari(Request $request)
+    {
+        // dd(request('cari'));
+        // return $request;
+        $cari = $request->cari;
+        $skeluar = Skeluar::where('perihal', 'like', '%' .$cari. '%')->paginate();
+        return view('skeluar.index', ['skeluar' =>$skeluar]);
+    
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -59,8 +71,12 @@ class SkeluarController extends Controller
             ]
         );
 
-        // untuk memasukkan data ketable
+        $img = $request->file('file');
+        $nama_file = time() . "_" . $img->getClientOriginalName();
+        $img->move('dist/img', $nama_file);
+
         Skeluar::create([
+            'file'=> $nama_file,
             'nokeluar' => $request->nokeluar,
             'perihal' => $request->perihal,
             'dituju' => $request->dituju,
@@ -123,7 +139,12 @@ class SkeluarController extends Controller
             ]
         );
 
+        $img = $request->file('file');
+        $nama_file = time() . "_" . $img->getClientOriginalName();
+        $img->move('dist/img', $nama_file);
+
         Skeluar::where('id', $skeluar->id)->update([
+            'file'=> $nama_file,
             'nokeluar' => $request->nokeluar,
             'perihal' => $request->perihal,
             'dituju' => $request->dituju,
@@ -131,7 +152,7 @@ class SkeluarController extends Controller
             'ket' => $request->ket,
         ]);
 
-        return redirect('/smasuk')->with('status', 'Berhasil Diubah');
+        return redirect('/skeluar')->with('status', 'Berhasil Diubah');
     }
 
     /**
