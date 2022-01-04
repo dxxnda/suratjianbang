@@ -15,6 +15,7 @@ class CreateSmasuksTable extends Migration
     {
         Schema::create('smasuks', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('file')->default('logoplg.jpeg');
             $table->string('nomasuk');
             $table->text('perihal');
             $table->string('asal');   

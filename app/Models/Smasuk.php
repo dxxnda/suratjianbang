@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Smasuk extends Model
 {
     use HasFactory;
-    protected $fillable= ['nomasuk', 'perihal', 'asal','tanggal', 'ket'];
+    protected $fillable= ['file','nomasuk', 'perihal', 'asal','tanggal', 'ket'];
 }

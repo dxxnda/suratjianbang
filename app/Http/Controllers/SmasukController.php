@@ -88,8 +88,13 @@ class SmasukController extends Controller
             ]
         );
 
+        $img = $request->file('file');
+        $nama_file = time() . "_" . $img->getClientOriginalName();
+        $img->move('dist/img', $nama_file); //proses upload foto kelaravel
+
         // untuk memasukkan data ketable
         Smasuk::create([
+            'photo'=> $nama_file,
             'nomasuk' => $request->nomasuk,
             'perihal' => $request->perihal,
             'asal' => $request->asal,
@@ -97,11 +102,13 @@ class SmasukController extends Controller
             'ket' => $request->ket,
         ]);
 
+
         $data = Smasuk::where(
             'nomasuk',
             $request->nomasuk
         )->get();
         // dd($data);  
+
 
         return redirect('/smasuk')->with('status', 'Berhasil Ditambahkan');
     }
